@@ -2,7 +2,7 @@
 
 ## usersテーブル
 |culum|type|options|
-|.....|....|.......|
+|-----|----|-------|
 |nickname|string|null: false|
 |password|string|null: fals|
 |email|string|null: false, unique: true,index:true|
@@ -18,7 +18,7 @@
 
 ## profilesテーブル
 |culum|type|options|
-|.....|....|.......|
+|-----|----|-------|
 |first_name|string|null :false|
 |family_name|string|null :false|
 |first_name_kana|string|null :false|
@@ -33,9 +33,9 @@
 - belongs_to :user
 
 
-##　destinationsテーブル
+## destinationsテーブル
 |culum|type|options|
-|.....|....|.......|
+|-----|----|-------|
 |first_name|string|null :false|
 |family_name|string|null :false|
 |first_name_kana|string|null :false|
@@ -54,7 +54,7 @@
 
 ## credit_cardsテーブル
 |culum|type|options|
-|.....|....|.......|
+|-----|----|-------|
 |card_number|integer|null :false, unique :true|
 |expiration_year|integer|null :false|
 |expiration_month|integer|null :false|
@@ -67,7 +67,7 @@
 
 ## itemsテーブル
 |culum|type|options|
-|.....|....|.......|
+|-----|----|-------|
 |name|string|null :false|
 |info|text|null :false|
 |category|integer|null :false, default :0|
@@ -90,7 +90,7 @@
 
 ## Photosテーブル
 |culum|type|options|
-|.....|....|.......|
+|-----|----|-------|
 |photo|string|null :false|
 |item_id|refereces|null : false, foreign_key :true|
 |draft_id|references|null :false, foreign_key: true|
@@ -103,7 +103,7 @@
 
 ## draftテーブル
 |culum|type|options|
-|.....|....|.......|
+|-----|----|-------|
 |name|string||
 |info|text||
 |category|integer|default :0|
