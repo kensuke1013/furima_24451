@@ -4,8 +4,13 @@
 |culum|type|options|
 |-----|----|-------|
 |nickname|string|null: false|
-|password|string|null: fals|
+|password|string|null: false|
 |email|string|null: false, unique: true,index:true|
+|first_name|string|null :false|
+|family_name|string|null :false|
+|first_name_kana|string|null :false|
+|family_name_kana|string|null :false|
+|birth|date|null :false|
 
 ### Association
 - has_many :comments, dependent: :destroy
@@ -19,22 +24,6 @@
 - has_one :sns_authentication, dependent: :destroy
 - has_one :sending_destination, dependent: :destroy
 - has_one :credit_card, dependent: :destroy
-
-## profilesテーブル
-|culum|type|options|
-|-----|----|-------|
-|first_name|string|null :false|
-|family_name|string|null :false|
-|first_name_kana|string|null :false|
-|family_name_kana|string|null :false|
-|birth_year|integer|null :false|
-|birth_month|integer|null :false|
-|birth_day|integer|null :false|
-|user_id|refences|null :false, foregin_key :true|
-
-### Association
-
-- belongs_to :user
 
 ## sns_authenticationsテーブル
 |culumn|type|options|
@@ -68,14 +57,6 @@
 
 - belongs_to :user
 
-## credit_cardsテーブル
-|culum|type|options|
-|-----|----|-------|
-|card_number|integer|null :false, unique :true|
-|expiration_year|integer|null :false|
-|expiration_month|integer|null :false|
-|security_code|integer|null :false|
-|user|references|null :false, foreign_key :true|
 
 #### Association
 
@@ -130,7 +111,7 @@
 |item_img|integer|null: false, foreign_key: true|
 |category|references|null :false, foreign_key :true|
 |trading_status|enum|null: false|
-|seller|references|null: false, foreign_key: true|
+|seller|references|null: false, foreign_key: { to_table: :users }|
 |buyer|references|foreign_key: true|
 |deal_closed_date|timestamp||
 
