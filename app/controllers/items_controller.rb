@@ -16,15 +16,20 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Item.create(post_params)
-    redirect_to root_path
+    @item = Item.new(post_params)
+    # if @item.valid?
+    if @item.save
+      redirect_to root_path
+    else
+      render :new  
+    end
   end
 
 
-  def update
-    @items.update(post_params)
-    redirect_to root_path
-  end
+  #def update
+    #@items.update(post_params)
+    #redirect_to root_path
+  #end
 
   private
 
