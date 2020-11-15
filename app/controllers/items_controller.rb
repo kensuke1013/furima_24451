@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update, :show]
+  before_action :authenticate_user!, only: [:new, :edit, :show, :create, :update]
+
   def index
     @items = Item.all
   end
@@ -17,8 +19,8 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(post_params)
-    # if @item.valid?
-    if @item.save
+    if @item.valid?
+      @item.save
       redirect_to root_path
     else
       render :new  
