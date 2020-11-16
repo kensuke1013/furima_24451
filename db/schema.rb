@@ -101,8 +101,10 @@ ActiveRecord::Schema.define(version: 2020_11_09_052138) do
     t.bigint "shipmentsource_id", null: false
     t.bigint "daystoship_id", null: false
     t.bigint "item_price_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -178,6 +180,7 @@ ActiveRecord::Schema.define(version: 2020_11_09_052138) do
   add_foreign_key "favorites", "items"
   add_foreign_key "favorites", "users"
   add_foreign_key "item_imgs", "items"
+  add_foreign_key "items", "users"
   add_foreign_key "points", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "sns_authentications", "users"
