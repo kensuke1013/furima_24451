@@ -14,10 +14,4 @@ class ApplicationController < ActionController::Base
       username == 'senju' && password == '1010'
     end
   end
-
-  def require_login
-    unless current_user
-      redirect_to login_url
-    end
-  end
 end

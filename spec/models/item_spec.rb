@@ -99,7 +99,7 @@ RSpec.describe Item, type: :model do
 
     
       it "価格が299円以下だと登録できないこと" do
-        @item .item_price_id = 299
+        @item .item_price = 299
         @item.valid?
         expect(@item.errors[:item_price_id]).to include("must be greater than or equal to 300")
       end
@@ -107,11 +107,11 @@ RSpec.describe Item, type: :model do
 
     
       it "価格が9,999,999円より高い場合登録できないこと" do
-        @item.item_price_id = 10000000
+        @item.item_price = 10000000
         @item.valid?
         expect(@item.errors[:item_price_id]).to include("must be less than or equal to 999999")
       end
-      
+
     end   
   end
 end
