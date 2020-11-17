@@ -5,7 +5,14 @@ class Item < ApplicationRecord
   has_one_attached :item_img
   belongs_to_active_hash :shipmentsource
 
-  validates :name, :item_img, :introduction, :genre_id, :itemstatus_id, :deliveryfee_id, :shipmentsource_id, :daystoship_id, presence: true
+  with_options presence: true do
+    validates :name, :item_img, :introduction, :genre_id, :itemstatus_id, :deliveryfee_id, :shipmentsource_id, :daystoship_id
+  end
+
+  with_options numericality: { greater_than_or_equal_to: 2} do
+    validates :genre_id, :itemstatus_id, :deliveryfee_id, :shipmentsource_id, :daystoship_id
+  end
+  
 
   validates :item_price_id, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 999_999 }
 end

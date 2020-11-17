@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 RSpec.describe Item, type: :model do
   before do
     user = FactoryBot.create(:user)
@@ -36,48 +37,48 @@ RSpec.describe Item, type: :model do
 
 
     # 4
-    it "カテゴリーの情報が必須であること" do
-      @item.genre_id = nil
+    it "カテゴリーの情報が１以外で登録できる" do
+      @item.genre_id = 1
       @item.valid?
-      expect(@item.errors[:genre_id]).to include("can't be blank")
+      expect(@item.errors[:genre_id]).to include("must be greater than or equal to 2")
     end
 
 
 
 
     # 5
-    it "商品の状態についての情報が必須であること" do
-      @item.itemstatus_id = nil
+    it "商品の状態について１以外で登録できる" do
+      @item.itemstatus_id = 1
       @item.valid?
-      expect(@item.errors[:itemstatus_id]).to include("can't be blank")
+      expect(@item.errors[:itemstatus_id]).to include("must be greater than or equal to 2")
     end
 
 
 
 
     # 6
-    it "配送料の負担についての情報が必須であること" do
-      @item.deliveryfee_id = nil
+    it "配送料の負担について１以外で登録できる" do
+      @item.deliveryfee_id = 1
       @item.valid?
-      expect(@item.errors[:deliveryfee_id]).to include("can't be blank")
+      expect(@item.errors[:deliveryfee_id]).to include("must be greater than or equal to 2")
     end
 
 
 
     # 7
-    it "発送元の地域についての情報が必須であること" do
-      @item.shipmentsource_id = nil
+    it "発送元の地域について１以外で登録できる" do
+      @item.shipmentsource_id = 1
       @item.valid?
-      expect(@item.errors[:shipmentsource_id]).to include("can't be blank")
+      expect(@item.errors[:shipmentsource_id]).to include("must be greater than or equal to 2")
     end
 
 
 
     # 8
-    it "発送までの日数についての情報が必須であること" do
-      @item.daystoship_id = nil
+    it "発送日数について１以外で登録できる" do
+      @item.daystoship_id = 1
       @item.valid?
-      expect(@item.errors[:daystoship_id]).to include("can't be blank")
+      expect(@item.errors[:daystoship_id]).to include("must be greater than or equal to 2")
     end
 
 
