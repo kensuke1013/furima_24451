@@ -11,7 +11,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def show
@@ -41,6 +40,13 @@ class ItemsController < ApplicationController
   def post_params
     params.require(:item).permit(:content, :item_img, :name, :introduction, :genre_id, :itemstatus_id, :deliveryfee_id, :shipmentsource_id, :daystoship_id, :item_price_id)
     .merge(user_id: current_user.id)
+  end
+
+  def authenticate_user!
+    item = Item.find(params[:id])
+    if item.user_id != current_user.id
+      redirect_to action: :index
+    end
   end
  
   def set_item
