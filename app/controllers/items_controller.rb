@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :update, :show]
   before_action :authenticate_user!, only: [:new, :edit, :create, :update]
+  before_action :set_item, only: [:edit, :update, :show]
+  before_action :check_item, only: [:edit]
+
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -42,9 +44,8 @@ class ItemsController < ApplicationController
     .merge(user_id: current_user.id)
   end
 
-  def authenticate_user!
-    item = Item.find(params[:id])
-    if item.user_id != current_user.id
+  def check_item
+    if @item.user_id != current_user.id
       redirect_to action: :index
     end
   end
