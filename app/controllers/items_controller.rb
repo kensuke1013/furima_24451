@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :update, :show]
   before_action :authenticate_user!, only: [:new, :edit, :create, :update]
+  before_action :set_item, only: [:edit, :update, :show]
+  before_action :check_item, only: [:edit]
+
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -27,16 +29,25 @@ class ItemsController < ApplicationController
   end
 
 
-  #def update
-    #@items.update(post_params)
-    #redirect_to root_path
-  #end
+  def update
+    if @item.update(post_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
 
   private
 
   def post_params
     params.require(:item).permit(:content, :item_img, :name, :introduction, :genre_id, :itemstatus_id, :deliveryfee_id, :shipmentsource_id, :daystoship_id, :item_price_id)
     .merge(user_id: current_user.id)
+  end
+
+  def check_item
+    if @item.user_id != current_user.id
+      redirect_to action: :index
+    end
   end
  
   def set_item
