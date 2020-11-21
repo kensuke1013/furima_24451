@@ -3,6 +3,12 @@ class OrdersController < ApplicationController
   def index
     @user_order = FormObject.new
     @item = Item.find(params[:item_id])
+
+    if @item.order != nil || @item.user_id == current_user.id
+      redirect_to root_path
+    end
+
+    
   end
 
   def new
