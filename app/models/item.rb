@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+  has_one :order
   belongs_to :brand, optional: true
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :genre

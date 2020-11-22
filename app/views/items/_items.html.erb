@@ -2,11 +2,11 @@
   <div class='item-img-content'>
     <%= image_tag item.item_img, class: "item-img" %>
 
-    <%# 商品が売れていればsold outの表示 %>
-    <div class='sold-out'>
-      <span>Sold Out!!</span>
-    </div>
-    <%# //商品が売れていればsold outの表示 %>
+    <% if item.order != nil %>
+      <div class='sold-out'>
+        <span>Sold Out!!</span>
+      </div>
+    <% end %>
 
   </div>
   <div class='item-info'>

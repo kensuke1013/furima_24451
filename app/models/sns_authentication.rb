@@ -1,2 +1,0 @@
-class SnsAuthentication < ApplicationRecord
-end
