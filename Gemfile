@@ -73,3 +73,7 @@ gem 'active_hash'
 gem 'jquery-rails'
 
 gem 'payjp'
+
+group :production do
+  gem 'rails_12factor'
+end
