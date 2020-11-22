@@ -22,8 +22,6 @@ RSpec.describe Item, type: :model do
         expect(@item.errors[:item_img]).to include("can't be blank")
       end
 
-
-
     
       it "商品名が必須であること" do
         @item.name = nil
