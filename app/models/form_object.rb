@@ -3,7 +3,7 @@ class FormObject
   attr_accessor :post_code, :shipmentsource_id, :city, :house_number, :building_name, :phone_number, :token, :item_id, :user_id
 
   with_options presence: true do
-    validates :city, :house_number
+    validates :city, :house_number, :token
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
   end
   validates :shipmentsource_id, numericality: { other_than: 1, message: "can't be blank" }

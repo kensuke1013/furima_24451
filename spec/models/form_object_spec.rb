@@ -10,6 +10,14 @@ RSpec.describe FormObject, type: :model do
     it "全てあれば保存できる" do
       expect(@form_object).to be_valid
     end
+
+    it "建物が空でも保存できること" do
+      @form_object.building_name = nil
+      @form_object.valid?
+      expect(@form_object.errors[:building_name]).to include()
+    end
+
+    
   end
 
   context '保存できない場合' do
@@ -22,6 +30,12 @@ RSpec.describe FormObject, type: :model do
 
     it "配送先の情報として、都道府県が必須であること" do
       @form_object.shipmentsource_id = nil
+      @form_object.valid?
+      expect(@form_object.errors[:shipmentsource_id]).to include("can't be blank")
+    end
+
+    it "都道府県が「--」の場合、保存できないこと" do
+      @form_object.shipmentsource_id = 1
       @form_object.valid?
       expect(@form_object.errors[:shipmentsource_id]).to include("can't be blank")
     end
@@ -56,10 +70,10 @@ RSpec.describe FormObject, type: :model do
       expect(@form_object.errors[:phone_number]).to include("is out of setting range")
     end
 
-    it "建物が空でも保存できること" do
-      @form_object.building_name = nil
+    it "tokenが必須であること" do
+      @form_object.token = nil
       @form_object.valid?
-      expect(@form_object.errors[:building_name]).to include()
+      expect(@form_object.errors[:token]).to include("can't be blank")
     end
 
   end
