@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
 
     
   end
-  #クリエイト
+
   def create
     @user_order = FormObject.new(order_params)
     if @user_order.valid?
