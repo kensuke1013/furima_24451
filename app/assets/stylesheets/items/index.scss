@@ -242,6 +242,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  overflow: scroll;
 }
 
 .item-lists>.list {
